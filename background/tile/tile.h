@@ -7,7 +7,7 @@
 class Tile : public GameObject
 {
 public:
-  Tile(const char*, SDL_Renderer*, int, int);
+  Tile(const char*, SDL_Renderer*);
 
   void update();
   void setRects(SDL_Rect, SDL_Rect);

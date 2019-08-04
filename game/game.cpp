@@ -1,17 +1,6 @@
 #include "game.h"
-#include "game_object.h"
 
-Game::Game()
-{
-
-}
-
-Game::~Game()
-{
-
-}
-
-void Game::init(const char *title, int x, int y, int width, int height, bool fullScreen)
+Game::Game(const char *title, int x, int y, int width, int height, bool fullScreen)
 {
   int flags = 0; // SDL Init Flags
   // Change flag if fullScreen == ture
@@ -36,8 +25,17 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
   }
 }
 
+Game::~Game()
+{
+  delete managerManager;
+  SDL_DestroyWindow(window);
+  SDL_DestroyRenderer(renderer);
+  SDL_Quit();
+}
+
 void Game::input()
 {
+  Input::updateMouse();
   SDL_Event e; // Create event object
   SDL_PollEvent(&e); // Check for events
   switch (e.type) // Switch for the options
@@ -46,14 +44,48 @@ void Game::input()
     case SDL_QUIT:
       running = false;
       break;
-    // Default case
-    default:
+    // Key Presses
+    case SDL_KEYDOWN:
+      switch (e.key.keysym.sym)
+      {
+        case SDLK_UP:
+          Input::changeUpKey(true);
+          break;
+      }
+      break;
+    // Key Releases
+    case SDL_KEYUP:
+      switch (e.key.keysym.sym)
+      {
+        case SDLK_UP:
+          Input::changeUpKey(false);
+          break;
+      }
+      break;
+    // Mouse Presses
+    case SDL_MOUSEBUTTONDOWN:
+      switch (e.button.button)
+      {
+        case SDL_BUTTON_LEFT:
+          Input::setLeftClick(true);
+          break;
+      }
+      break;
+    // Mouse Releases
+    case SDL_MOUSEBUTTONUP:
+      switch (e.button.button)
+      {
+        case SDL_BUTTON_LEFT:
+          Input::setLeftClick(false);
+          break;
+      }
       break;
   }
 }
 
 void Game::update()
 {
+  GameStates::updateState();
   managerManager->update();
 }
 
@@ -67,10 +99,7 @@ void Game::draw()
   SDL_RenderPresent(renderer);
 }
 
-void Game::close()
+bool Game::isRunning()
 {
-  delete managerManager;
-  SDL_DestroyWindow(window);
-  SDL_DestroyRenderer(renderer);
-  SDL_Quit();
+  return running;
 }

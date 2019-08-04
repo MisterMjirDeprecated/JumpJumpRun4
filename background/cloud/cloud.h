@@ -16,13 +16,11 @@ using std::time;
 class Cloud : public GameObject
 {
 public:
-  Cloud(const char *, SDL_Renderer*, int, int);
+  Cloud(const char*, SDL_Renderer*);
   void update();
   void draw();
   bool offScreen();
 private:
-  vector<Cloud*> *list;
-  int id;
   int speed;
 };
 

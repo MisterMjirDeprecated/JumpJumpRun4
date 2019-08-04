@@ -16,7 +16,7 @@ void CloudManager::update()
   ticks++;
   if (ticks % 25 == 0)
   {
-    Cloud *cloud = new Cloud("images/white75.png", renderer, 0, 0);
+    Cloud *cloud = new Cloud("images/white75.png", renderer);
     objects.push_back(cloud);
   }
   for (int i = objects.size() - 1; i >= 0; i--)

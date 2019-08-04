@@ -1,4 +1,4 @@
-#include "texturemanager.h"
+#include "texture_manager.h"
 #include <SDL2/SDL_image.h>
 
 SDL_Texture* TextureManager::loadTexture(const char *fileName, SDL_Renderer *ren)

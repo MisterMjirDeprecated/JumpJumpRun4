@@ -1,34 +1,65 @@
 #include "player.h"
 
+Player::Player(const char *texturesheet, SDL_Renderer *ren):GameObject(texturesheet, ren)
+{
+  yVel = 0;
+  state = RUNNING;
+  destRect = {576, 384, 64, 64};
+  hp = 1;
+}
+
 void Player::update()
 {
-  runTicks++;
-  if (runTicks > 11)
-    runTicks = 0;
-  int playerXs[] = {0, 16, 32, 48};
-  int playerYs[] = {0, 16, 32, 48};
-  if (runTicks == 0)
-    srcRect = {playerXs[1], playerYs[0], 16, 16};
-  else if (runTicks == 1)
-    srcRect = {playerXs[2], playerYs[0], 16, 16};
-  else if (runTicks == 2)
-    srcRect = {playerXs[3], playerYs[0], 16, 16};
-  else if (runTicks == 3)
-    srcRect = {playerXs[0], playerYs[1], 16, 16};
-  else if (runTicks == 4)
-    srcRect = {playerXs[1], playerYs[1], 16, 16};
-  else if (runTicks == 5)
-    srcRect = {playerXs[2], playerYs[1], 16, 16};
-  else if (runTicks == 6)
-    srcRect = {playerXs[3], playerYs[1], 16, 16};
-  else if (runTicks == 7)
-    srcRect = {playerXs[0], playerYs[2], 16, 16};
-  else if (runTicks == 8)
-    srcRect = {playerXs[1], playerYs[2], 16, 16};
-  else if (runTicks == 9)
-    srcRect = {playerXs[2], playerYs[2], 16, 16};
-  else if (runTicks == 10)
-    srcRect = {playerXs[3], playerYs[2], 16, 16};
-  else
-    srcRect = {playerXs[0], playerYs[3], 16, 16};
+  if (state == RUNNING)
+  {
+    srcRect = {16 * (runTicks % 4), 16 * (runTicks / 4), 16, 16};
+
+    if (Input::getUpKey())
+      state = JUMPING;
+
+    runTicks++;
+    if (runTicks > 11)
+      runTicks = 0;
+  } else if (state == JUMPING)
+  {
+    srcRect = {0, 48, 16, 16};
+
+    if (!(Input::getUpKey()) && (yVel > 3))
+      state = FALLING;
+
+    //if (yVel == 0)
+      //destRect.y -= 24;
+
+    yVel++;
+    destRect.y -= yVel;
+    if (yVel > 10)
+      state = FALLING;
+  } else if (state == FALLING)
+  {
+    srcRect = {16, 48, 16, 16};
+
+    yVel -= 2;
+    destRect.y -= yVel;
+    if (destRect.y > 384)
+    {
+      yVel = 0;
+      destRect.y = 384;
+      state = RUNNING;
+    }
+  }
+}
+
+int Player::getX()
+{
+  return destRect.x;
+}
+
+int Player::getY()
+{
+  return destRect.y;
+}
+
+void Player::changeHP(int change)
+{
+  hp += change;
 }

@@ -8,8 +8,7 @@ int main()
   Uint32 frameStart;
   int frameTime;
 
-  Game game;
-  game.init("Jump! Jump! Run! 4", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 768, false);
+  Game game("Jump! Jump! Run! 4", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 768, false);
 
   while (game.isRunning())
   {
@@ -21,13 +20,12 @@ int main()
 
     frameTime = SDL_GetTicks() - frameStart;
 
-    if (frameDelay > frameTime)
+    while (frameDelay > frameTime)
     {
-      SDL_Delay(frameDelay - frameTime);
+      game.input();
+      frameTime = SDL_GetTicks() - frameStart;
     }
   }
-
-  game.close();
 
   return 0;
 }

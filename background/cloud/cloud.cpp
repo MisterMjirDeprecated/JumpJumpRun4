@@ -1,6 +1,6 @@
 #include "cloud.h"
 
-Cloud::Cloud(const char *texturesheet, SDL_Renderer *ren, int x, int y):GameObject(texturesheet, ren, x, y)
+Cloud::Cloud(const char *texturesheet, SDL_Renderer *ren):GameObject(texturesheet, ren)
 {
   srcRect = {0, 0, 1, 1};
   srand(time(0));

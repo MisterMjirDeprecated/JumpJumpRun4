@@ -1,6 +1,6 @@
 #include "tile.h"
 
-Tile::Tile(const char *texturesheet, SDL_Renderer *ren, int x, int y):GameObject(texturesheet, ren, x, y)
+Tile::Tile(const char *texturesheet, SDL_Renderer *ren):GameObject(texturesheet, ren)
 {
   ticks = 0;
 }

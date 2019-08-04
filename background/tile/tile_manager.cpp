@@ -15,7 +15,7 @@ TileManager::TileManager(SDL_Renderer *ren):ObjectManager(ren)
       } else {
         sRect = {16, 0, 16, 16};
       }
-      Tile *tile = new Tile("images/tilemap.png", renderer, 0, 0);
+      Tile *tile = new Tile("images/tilemap.png", renderer);
       dRect = {col * 64, 448 + row * 64, 64, 64};
       tile->setRects(sRect, dRect);
       objects.push_back(tile);
