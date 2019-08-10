@@ -14,6 +14,7 @@ public:
   virtual void update();
   virtual void draw();
 protected:
+  void removeObjects();
   SDL_Renderer *renderer;
   vector<GameObject*> objects;
 };

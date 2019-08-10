@@ -2,6 +2,7 @@
 #define SPIKE_MANAGER
 
 #include "object_manager.h"
+#include "player_manager.h"
 #include "spike.h"
 #include "player.h"
 #include "game_states.h"
@@ -11,14 +12,14 @@
 class SpikeManager : public ObjectManager
 {
 public:
-  SpikeManager(SDL_Renderer*, Player*);
+  SpikeManager(SDL_Renderer*, PlayerManager*);
   ~SpikeManager();
   void update();
   void draw();
 private:
   int ticks;
   vector<Spike*> objects;
-  Player *targetPlayer;
+  PlayerManager *playerList;
 };
 
 #endif

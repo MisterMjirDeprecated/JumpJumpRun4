@@ -8,7 +8,7 @@ ManagerManager::ManagerManager(SDL_Renderer *ren)
   objects.push_back(tileM);
   CloudManager *cloudM = new CloudManager(ren);
   objects.push_back(cloudM);
-  SpikeManager *spikeM = new SpikeManager(ren, playerM->playerAt(0));
+  SpikeManager *spikeM = new SpikeManager(ren, playerM); // Causing problem
   objects.push_back(spikeM);
   TextManager *textM = new TextManager(ren);
   objects.push_back(textM);

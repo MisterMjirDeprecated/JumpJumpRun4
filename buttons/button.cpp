@@ -1,6 +1,6 @@
 #include "button.h"
 
-Button::Button(const char *texturesheet, SDL_Renderer *ren, SDL_Rect startPos, SDL_Rect endPos):GameObject(texturesheet, ren)
+Button::Button(const char *texturesheet, SDL_Renderer *ren, SDL_Rect startPos, SDL_Rect endPos, GameState myState):GameObject(texturesheet, ren)
 {
   srcRect = {0, 0, 32, 16};
   ticks = -1;
@@ -8,6 +8,7 @@ Button::Button(const char *texturesheet, SDL_Renderer *ren, SDL_Rect startPos, S
   destRect = startPos;
   myPos = endPos;
   state = SLIDING;
+  newState = myState;
 }
 
 void Button::update()
@@ -43,7 +44,7 @@ void Button::update()
         if (hoverTicks < 8)
           hoverTicks++;
         if (Input::getLeftClick())
-          GameStates::changeState(GAME_GAME);
+          GameStates::changeState(newState);
       }
       else
       {

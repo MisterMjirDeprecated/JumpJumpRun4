@@ -12,7 +12,6 @@ public:
   TextManager(SDL_Renderer*);
   ~TextManager();
   void update();
-  void draw();
 };
 
 #endif

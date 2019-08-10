@@ -5,6 +5,7 @@ Player::Player(const char *texturesheet, SDL_Renderer *ren):GameObject(texturesh
   yVel = 0;
   state = RUNNING;
   destRect = {576, 384, 64, 64};
+  srcRect = {48, 48, 16, 16};
   hp = 1;
 }
 
@@ -12,13 +13,13 @@ void Player::update()
 {
   if (state == RUNNING)
   {
-    srcRect = {16 * (runTicks % 4), 16 * (runTicks / 4), 16, 16};
+    srcRect = {16 * (((runTicks - runTicks % 2) / 2) % 4), 16 * (((runTicks - runTicks % 2) / 2) / 4), 16, 16};
 
     if (Input::getUpKey())
       state = JUMPING;
 
     runTicks++;
-    if (runTicks > 11)
+    if (runTicks > 23)
       runTicks = 0;
   } else if (state == JUMPING)
   {

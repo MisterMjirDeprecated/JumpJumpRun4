@@ -2,7 +2,7 @@
 
 Spike::Spike(const char *texturesheet, SDL_Renderer *ren, Player *player):GameObject(texturesheet, ren)
 {
-  speed = 3;
+  speed = 8;
   destRect = {1280, 424, 64, 24};
   srcRect = {0, 10, 16, 6};
   targetPlayer = player;

@@ -2,7 +2,7 @@
 
 int main()
 {
-  const int FPS = 12;
+  const int FPS = 24;
   const int frameDelay = 1000 / FPS;
 
   Uint32 frameStart;

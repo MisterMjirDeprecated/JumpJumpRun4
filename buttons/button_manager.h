@@ -12,7 +12,6 @@ public:
   ButtonManager(SDL_Renderer*);
   ~ButtonManager();
   void update();
-  void draw();
 };
 
 #endif

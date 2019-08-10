@@ -13,6 +13,7 @@ public:
   Text(const char*, SDL_Renderer*, SDL_Rect, SDL_Rect);
 
   void update();
+  void draw();
 private:
   int ticks;
   SDL_Rect myPos; // Where it should be

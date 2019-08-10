@@ -85,8 +85,8 @@ void Game::input()
 
 void Game::update()
 {
-  GameStates::updateState();
   managerManager->update();
+  GameStates::updateState();
 }
 
 void Game::draw()

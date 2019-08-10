@@ -7,8 +7,7 @@ ObjectManager::ObjectManager(SDL_Renderer *ren)
 
 ObjectManager::~ObjectManager()
 {
-  for (int i = objects.size() - 1; i >=0; i--)
-    objects.erase(objects.begin() + i);
+  removeObjects();
 }
 
 void ObjectManager::update()
@@ -21,4 +20,10 @@ void ObjectManager::draw()
 {
   for (int i = 0; i < objects.size(); i++)
     objects.at(i)->draw();
+}
+
+void ObjectManager::removeObjects()
+{
+  for (int i = objects.size() - 1; i >=0; i--)
+    objects.erase(objects.begin() + i);
 }

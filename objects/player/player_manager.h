@@ -3,6 +3,7 @@
 
 #include "object_manager.h"
 #include "player.h"
+#include "game_states.h"
 #include <SDL2/SDL.h>
 #include <vector>
 

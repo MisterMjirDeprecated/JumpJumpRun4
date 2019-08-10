@@ -12,7 +12,7 @@ enum ButtonStates {SLIDING, BOUNCING};
 class Button : public GameObject
 {
 public:
-  Button(const char*, SDL_Renderer*, SDL_Rect, SDL_Rect);
+  Button(const char*, SDL_Renderer*, SDL_Rect, SDL_Rect, GameState);
 
   void update();
 private:
@@ -20,6 +20,7 @@ private:
   int hoverTicks; // How long the mouse is hovering it
   SDL_Rect myPos;
   ButtonStates state;
+  GameState newState; // The new state after button is clicked
 };
 
 #endif

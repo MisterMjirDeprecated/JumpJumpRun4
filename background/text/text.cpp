@@ -2,7 +2,6 @@
 
 Text::Text(const char *texturesheet, SDL_Renderer *ren, SDL_Rect startPos, SDL_Rect endPos):GameObject(texturesheet, ren)
 {
-  srcRect = {0, 0, 32, 34};
   destRect = startPos;
   myPos = endPos;
   state = SLIDING;
@@ -42,4 +41,9 @@ void Text::update()
     default:
       break;
   }
+}
+
+void Text::draw()
+{
+  SDL_RenderCopy(renderer, texture, NULL, &destRect);
 }

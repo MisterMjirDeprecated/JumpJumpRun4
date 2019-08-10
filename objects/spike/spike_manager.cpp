@@ -1,9 +1,9 @@
 #include "spike_manager.h"
 
-SpikeManager::SpikeManager(SDL_Renderer *ren, Player *player):ObjectManager(ren) // Player*
+SpikeManager::SpikeManager(SDL_Renderer *ren, PlayerManager *playerM):ObjectManager(ren) // Player*
 {
   ticks = 0;
-  targetPlayer = player;
+  playerList = playerM;
 }
 
 SpikeManager::~SpikeManager()
@@ -20,7 +20,7 @@ void SpikeManager::update()
     if (ticks > 24)
     {
       if (ticks % 100 == 0) {
-        Spike *spike = new Spike("images/spike.png", renderer, targetPlayer);
+        Spike *spike = new Spike("images/spike.png", renderer, playerList->playerAt(0));
         objects.push_back(spike);
       }
       for (int i = objects.size() - 1; i >= 0; i--)
@@ -29,7 +29,7 @@ void SpikeManager::update()
         if (objects.at(i)->offScreen())
           objects.erase(objects.begin() + i);
         else if (objects.at(i)->collidesPlayer())
-          GameStates::changeState(GAME_MENU);
+          GameStates::changeState(GAME_OVER);
       }
     }
   }

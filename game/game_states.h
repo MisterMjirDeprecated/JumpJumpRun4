@@ -8,11 +8,14 @@ class GameStates
 public:
   static GameState getState(); // Return current state
   static void changeState(GameState); // Queue state for change
+  static bool getFirstTick();
+  // Below are only for game class to use
   static void updateState(); // Change state before update (for game class only)
 private:
   GameStates(); // Prevent initialization
   static GameState state;
   static GameState newState;
+  static bool firstTick; // First tick of a state
 };
 
 #endif
