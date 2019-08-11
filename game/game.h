@@ -9,6 +9,7 @@
 #include "manager_manager.h"
 #include "input.h"
 #include "game_states.h"
+#include "score.h"
 #include <SDL2/SDL.h>
 
 class Game

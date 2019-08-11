@@ -85,6 +85,7 @@ void Game::input()
 
 void Game::update()
 {
+  Score::update();
   managerManager->update();
   GameStates::updateState();
 }

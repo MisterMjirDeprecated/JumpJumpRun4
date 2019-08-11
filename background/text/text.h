@@ -14,7 +14,7 @@ public:
 
   void update();
   void draw();
-private:
+protected:
   int ticks;
   SDL_Rect myPos; // Where it should be
   TextStates state;
